@@ -1,11 +1,23 @@
-CFLAGS := -Wall
-SOURCES := $(wildcard src/*.c)
-BINS = $(addprefix bin/,$(notdir $(SOURCES:.c=)))
+CC := gcc
+CFLAGS := -Wall -std=c99
+DIRS := $(wildcard src/*)
+SOURCES := $(wildcard src/**/*.c)
+BINS = $(addprefix bin/, $(SOURCES:src/%.c=%))
 
-all: $(BINS)
+.PHONY: all clean
+.SECONDARY: main-build
+
+all: pre-build main-build post-build
+
+pre-build:
+	@mkdir -p $(DIRS:src/%=bin/%)
+
+post-build:
+
+main-build: $(BINS)
 
 bin/%: src/%.c
-	gcc $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 clean:
-	rm bin/*
+	rm -f $(BINS)
