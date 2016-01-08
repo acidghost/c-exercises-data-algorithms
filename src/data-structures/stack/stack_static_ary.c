@@ -57,10 +57,12 @@ bool stack_full(stack *s) {
 int main() {
 	stack *s = stack_new();
 
-	assert(stack_push(s, (void *) 5) == true);
+	int v = 6;
+
+	assert(stack_push(s, &v) == true);
 	
-	int *top = (int *) stack_top(s);
-	assert(top == 5);
+	int top = *(int *) stack_top(s);
+	assert(top == v);
 	
 	assert(stack_pop(s) == true);
 	

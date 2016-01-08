@@ -5,7 +5,7 @@
 #include "stack_dynamic_ary.h"
 
 
-void *empty_stack;
+T empty_stack;
 
 stack *stack_new(const size_t elm_size, uint initial_size) {
 	static int es;
@@ -58,14 +58,16 @@ bool stack_full(stack *s) {
 int main() {
 	stack *s = stack_new(sizeof(int), 1);
 
-	assert(stack_push(s, 5) == true);
-	assert(stack_push(s, 5) == true);
+	int v = 5;
 
-	int *top = (int *) stack_top(s);
-	assert(top == 5);
+	assert(stack_push(s, &v) == true);
+	assert(stack_push(s, &v) == true);
+
+	int top = *(int *) stack_top(s);
+	assert(top == v);
 
 	assert(stack_pop(s) == true);
-	assert((int *) stack_top(s) == 5);
+	assert(*(int *) stack_top(s) == v);
 
 	assert(stack_pop(s) == true);
 	assert(stack_top(s) == empty_stack);
