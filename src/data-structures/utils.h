@@ -1,3 +1,3 @@
 typedef void *T;
 
-typedef enum { true, false } bool;
+typedef enum { true = 1, false = 0 } bool;
