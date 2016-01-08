@@ -1,4 +1,5 @@
 CC = gcc
+DB = gdb
 CFLAGS = -Wall -std=c99
 SHELL = /bin/bash
 
@@ -24,6 +25,10 @@ bin/%: src/%.c
 	@printf "\nSTART BUILD $^\n$(separator)\n"
 	$(CC) $(CFLAGS) -o $@ $^
 	@printf "$(separator)\n\n\n"
+
+debug:
+	$(MAKE) CFLAGS="$(CFLAGS) -g"
+	@if [ -n "$(file)" ]; then $(DB) $(file); fi
 
 clean:
 	rm -rf ./bin
