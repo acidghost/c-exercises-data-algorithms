@@ -41,6 +41,18 @@ bool stack_pop(stack *s) {
 	}
 }
 
+uint stack_size(stack *s) {
+	return s->size;
+}
+
+bool stack_empty(stack *s) {
+	return s->size == 0;
+}
+
+bool stack_full(stack *s) {
+	return s->size == MAX_STACK;
+}
+
 
 int main() {
 	stack *s = stack_new();

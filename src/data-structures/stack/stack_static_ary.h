@@ -5,12 +5,15 @@
 
 typedef struct {
 	T data[MAX_STACK];
-	unsigned int size;
+	uint size;
 } stack;
 
 extern void *empty_stack;
 
 stack *stack_new();
-T stack_top(stack *s);
-bool stack_push(stack *s, T v);
-bool stack_pop(stack *s);
+T stack_top(stack *);
+bool stack_push(stack *, T);
+bool stack_pop(stack *);
+uint stack_size(stack *);
+bool stack_empty(stack *);
+bool stack_full(stack *);
