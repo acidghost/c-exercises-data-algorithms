@@ -8,13 +8,12 @@
 T empty_stack;
 
 stack *stack_new(const size_t elm_size, uint initial_size) {
-	static int es;
-	if (!empty_stack) empty_stack = &es;
+	empty_placeholder(empty_stack)
 	stack *s = malloc(sizeof(stack));
 	s->elm_size = elm_size;
 	s->data = malloc(initial_size * elm_size);
 	s->size = initial_size;
-	s->used = 0;
+	s->used = initial_size - 1;
 	return s;
 }
 

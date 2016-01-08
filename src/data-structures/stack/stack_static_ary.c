@@ -5,11 +5,10 @@
 #include "stack_static_ary.h"
 
 
-void *empty_stack;
+T empty_stack;
 
 stack *stack_new() {
-	static int es;
-	if (!empty_stack) empty_stack = &es;
+	empty_placeholder(empty_stack)
 	stack *s = malloc(sizeof(stack));
 	s->size = 0;
 	return s;
